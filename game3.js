@@ -12,13 +12,6 @@
 // and interact with the button on the game screen.
 // Keeping this in one object makes it easier to move,
 // resize, or restyle the button later.
-const game3Btn = {
-  x: 400, // x position (centre of the button)
-  y: 550, // y position (centre of the button)
-  w: 260, // width
-  h: 90, // height
-  label: "PRESS HERE", // text shown on the button
-};
 
 // ------------------------------
 // Main draw function for this screen
@@ -33,32 +26,67 @@ function drawGame3() {
   fill(0); // black text
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("Stage 3", width / 2, 160);
+  text("Stage 2", width / 2, 160);
 
   textSize(20);
-  text("You have set out on your hero's journey.", width / 2, 210);
-  text("The journey leads you to the Dark Forest.", width / 2, 230);
   text(
-    "Deep in the heart of the forest lays the green dragon...",
+    "As you progress the forest grows darker. You hear rustling in the bushes.",
     width / 2,
-    250,
+    210,
   );
-  text("JAXANAEDEGOR", width / 2, 270);
-  text("Your mission, survive the forest and slay the dragon", width / 2, 290);
-  text(
-    "Click the button (or press ENTER) to start your journey.",
-    width / 2,
-    340,
-  );
+  text("You are not alone", width / 2, 240);
+  textSize(18);
+  text("Choose your path.", width / 2, 280);
 
   // ---- Draw the button ----
   // We pass the button object to a helper function
-  drawGame3Button(game3Btn);
+  const opt1Btn = {
+    x: width / 2,
+    y: 360,
+    w: 550,
+    h: 60,
+    label: "Cross the old wooden bridge over a ravine",
+  };
+
+  const opt2Btn = {
+    x: width / 2,
+    y: 460,
+    w: 440,
+    h: 60,
+    label: "Hide and wait for danger to pass",
+  };
+
+  const opt3Btn = {
+    x: width / 2,
+    y: 560,
+    w: 440,
+    h: 60,
+    label: "Charge forward, weapon raised",
+  };
+
+  const opt4Btn = {
+    x: width / 2,
+    y: 660,
+    w: 400,
+    h: 60,
+    label: "Turn back while you still can",
+  };
+
+  // Draw both buttons
+  drawGame3Button(opt1Btn);
+  drawGame3Button(opt2Btn);
+  drawGame3Button(opt3Btn);
+  drawGame3Button(opt4Btn);
 
   // ---- Cursor feedback ----
-  // If the mouse is over the button, show a hand cursor
-  // Otherwise, show the normal arrow cursor
-  cursor(isHover(game3Btn) ? HAND : ARROW);
+  // If the mouse is over either button, show a hand cursor
+  // so the player knows it is clickable.
+  const over =
+    isHover(opt1Btn) ||
+    isHover(opt2Btn) ||
+    isHover(opt3Btn) ||
+    isHover(opt4Btn);
+  cursor(over ? HAND : ARROW);
 }
 
 // ------------------------------
@@ -77,15 +105,25 @@ function drawGame3Button({ x, y, w, h, label }) {
 
   // Change button colour when hovered
   // This gives visual feedback to the player
-  fill(
-    hover
-      ? color(180, 220, 255, 220) // lighter blue on hover
-      : color(200, 220, 255, 190), // normal state
-  );
+  if (hover) {
+    fill(170, 210, 255, 220);
 
-  // Draw the button rectangle
-  rect(x, y, w, h, 14); // last value = rounded corners
+    // Shadow settings (only when hovered)
+    drawingContext.shadowBlur = 20;
+    drawingContext.shadowColor = color(150, 200, 255);
+  } else {
+    fill(200, 225, 255, 200);
 
+    // Softer shadow when not hovered
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = color(210, 220, 235);
+  }
+
+  // Draw the rounded rectangle button
+  rect(x, y, w, h, 14);
+
+  // Important: reset shadow so it does not affect other drawings
+  drawingContext.shadowBlur = 0;
   // Draw the button text
   fill(0);
   textSize(28);
@@ -100,8 +138,19 @@ function drawGame3Button({ x, y, w, h, label }) {
 // only when currentScreen === "game"
 function game3MousePressed() {
   // Only trigger the outcome if the button is clicked
-  if (isHover(game3Btn)) {
-    triggerRandomOutcome();
+  const opt1Btn = { x: width / 2, y: 360, w: 240, h: 80 };
+  const opt2Btn = { x: width / 2, y: 460, w: 240, h: 80 };
+  const opt3Btn = { x: width / 2, y: 560, w: 240, h: 80 };
+  const opt4Btn = { x: width / 2, y: 660, w: 240, h: 80 };
+
+  if (isHover(opt1Btn)) {
+    currentScreen = "game4";
+  } else if (isHover(opt2Btn)) {
+    currentScreen = "lose";
+  } else if (isHover(opt3Btn)) {
+    currentScreen = "game4";
+  } else if (isHover(opt4Btn)) {
+    currentScreen = "lose";
   }
 }
 
@@ -111,27 +160,19 @@ function game3MousePressed() {
 // Allows keyboard-only interaction (accessibility + design)
 function game3KeyPressed() {
   // ENTER key triggers the same behaviour as clicking the button
-  if (keyCode === ENTER) {
-    triggerRandomOutcome();
+  if (isHover(opt1Btn)) {
+    currentScreen = "game4";
   }
-}
 
-// ------------------------------
-// Game logic: win or lose
-// ------------------------------
-// This function decides what happens next in the game.
-// It does NOT draw anything.
-function triggerRandomOutcome() {
-  // random() returns a value between 0 and 1
-  // Here we use a 50/50 chance:
-  // - less than 0.5 → win
-  // - 0.5 or greater → lose
-  //
-  // You can bias this later, for example:
-  // random() < 0.7 → 70% chance to win
-  if (random() < 0.5) {
-    currentScreen = "win";
-  } else {
+  if (isHover(opt2Btn)) {
+    currentScreen = "lose";
+  }
+
+  if (isHover(opt3Btn)) {
+    currentScreen = "game4";
+  }
+
+  if (isHover(opt4Btn)) {
     currentScreen = "lose";
   }
 }

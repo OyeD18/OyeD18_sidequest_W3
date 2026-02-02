@@ -14,10 +14,10 @@
 // resize, or restyle the button later.
 const game1Btn = {
   x: 400, // x position (centre of the button)
-  y: 460, // y position (centre of the button)
+  y: 480, // y position (centre of the button)
   w: 260, // width
   h: 90, // height
-  label: "PRESS HERE", // text shown on the button
+  label: "ONWARDS⚔️", // text shown on the button
 };
 
 // ------------------------------
@@ -37,18 +37,18 @@ function drawGame1() {
 
   textSize(20);
   text("You have set out on your hero's journey.", width / 2, 210);
-  text("The journey leads you to the Dark Forest.", width / 2, 230);
+  text("The journey leads you to the Dark Forest.", width / 2, 240);
   text(
     "Deep in the heart of the forest lays the green dragon...",
     width / 2,
-    250,
+    270,
   );
-  text("JAXANAEDEGOR", width / 2, 270);
-  text("Your mission, survive the forest and slay the dragon", width / 2, 290);
+  text("JAXANAEDEGOR", width / 2, 300);
+  text("Your mission, survive the forest and slay the dragon", width / 2, 330);
   text(
     "Click the button (or press ENTER) to start your journey.",
     width / 2,
-    340,
+    380,
   );
 
   // ---- Draw the button ----

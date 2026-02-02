@@ -26,7 +26,7 @@ function drawGame2() {
   fill(0); // black text
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("PAGE 2", width / 2, 160);
+  text("Stage 1", width / 2, 160);
 
   textSize(20);
   text(
@@ -34,16 +34,16 @@ function drawGame2() {
     width / 2,
     210,
   );
-  text("The forest is quiet... too quiet.", width / 2, 230);
+  text("The forest is quiet... too quiet.", width / 2, 240);
 
-  textSize(16);
-  text("Choose your path.", width / 2, 270);
+  textSize(18);
+  text("Choose your path.", width / 2, 280);
 
   // ---- Draw the button ----
   // We pass the button object to a helper function
   const opt1Btn = {
     x: width / 2,
-    y: 430,
+    y: 350,
     w: 340,
     h: 60,
     label: "Follow the narrow trail",
@@ -51,18 +51,18 @@ function drawGame2() {
 
   const opt2Btn = {
     x: width / 2,
-    y: 530,
-    w: 440,
+    y: 450,
+    w: 540,
     h: 60,
-    label: "Light a torch to scare off threats",
+    label: "Draw your sword and advance cautiously",
   };
 
   const opt3Btn = {
     x: width / 2,
-    y: 630,
+    y: 550,
     w: 440,
     h: 60,
-    label: "Draw your sword and advance cautiously",
+    label: "Light a torch to scare off threats",
   };
 
   // Draw both buttons
@@ -73,7 +73,7 @@ function drawGame2() {
   // ---- Cursor feedback ----
   // If the mouse is over either button, show a hand cursor
   // so the player knows it is clickable.
-  const over = isHover(opt1Btn) || isHover(opt2Btn);
+  const over = isHover(opt1Btn) || isHover(opt2Btn) || isHover(opt3Btn);
   cursor(over ? HAND : ARROW);
 }
 
@@ -125,18 +125,16 @@ function drawGame2Button({ x, y, w, h, label }) {
 // only when currentScreen === "game"
 function game2MousePressed() {
   // Only trigger the outcome if the button is clicked
-  const opt1Btn = { x: width / 2, y: 430, w: 240, h: 80 };
-  const opt2Btn = { x: width / 2, y: 530, w: 240, h: 80 };
-  const opt3Btn = { x: width / 2, y: 630, w: 240, h: 80 };
+  const opt1Btn = { x: width / 2, y: 350, w: 240, h: 80 };
+  const opt2Btn = { x: width / 2, y: 450, w: 240, h: 80 };
+  const opt3Btn = { x: width / 2, y: 550, w: 240, h: 80 };
 
   if (isHover(opt1Btn)) {
     currentScreen = "game3";
-  }
-  // If INSTRUCTIONS is clicked, go to the instructions screen
-  else if (isHover(opt2Btn)) {
-    currentScreen = "lose";
-  } else if (isHover(opt3Btn)) {
+  } else if (isHover(opt2Btn)) {
     currentScreen = "game3";
+  } else if (isHover(opt3Btn)) {
+    currentScreen = "lose";
   }
 }
 
@@ -151,10 +149,10 @@ function game2KeyPressed() {
   }
 
   if (isHover(opt2Btn)) {
-    currentScreen = "lose";
+    currentScreen = "game3";
   }
 
   if (isHover(opt3Btn)) {
-    currentScreen = "game3";
+    currentScreen = "lose";
   }
 }
