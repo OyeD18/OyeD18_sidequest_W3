@@ -1,12 +1,13 @@
 ## Project Title
 
-GBDA302 Week 3 Example 1: Instructions Screen with Back button
+GBDA302 Sidequest Week 3: The Quest Of A Hero
 
 ---
 
 ## Authors
 
-Karen Cochrane and David Han
+Dolapo Ajiboye
+ID: 21066026
 
 ---
 
