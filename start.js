@@ -18,7 +18,7 @@ function drawStart() {
   fill(30, 50, 60);
   textSize(46);
   textAlign(CENTER, CENTER);
-  text("A Game of Decisions", width / 2, 180);
+  text("The Quest Of A Hero", width / 2, 180);
 
   // ---- Buttons (data only) ----
   // These objects store the position/size/label for each button.
@@ -62,7 +62,7 @@ function startMousePressed() {
 
   // If START is clicked, go to the game screen
   if (isHover(startBtn)) {
-    currentScreen = "game";
+    currentScreen = "game1";
   }
   // If INSTRUCTIONS is clicked, go to the instructions screen
   else if (isHover(instrBtn)) {
@@ -78,7 +78,7 @@ function startMousePressed() {
 // - I opens instructions
 function startKeyPressed() {
   if (keyCode === ENTER) {
-    currentScreen = "game";
+    currentScreen = "game1";
   }
 
   if (key === "i" || key === "I") {

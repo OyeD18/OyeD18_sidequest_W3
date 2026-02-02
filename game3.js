@@ -12,7 +12,7 @@
 // and interact with the button on the game screen.
 // Keeping this in one object makes it easier to move,
 // resize, or restyle the button later.
-const gameBtn = {
+const game3Btn = {
   x: 400, // x position (centre of the button)
   y: 550, // y position (centre of the button)
   w: 260, // width
@@ -25,7 +25,7 @@ const gameBtn = {
 // ------------------------------
 // drawGame() is called from main.js *only*
 // when currentScreen === "game"
-function drawGame() {
+function drawGame3() {
   // Set background colour for the game screen
   background(240, 230, 140);
 
@@ -33,23 +33,32 @@ function drawGame() {
   fill(0); // black text
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("Game Screen", width / 2, 160);
+  text("Stage 3", width / 2, 160);
 
-  textSize(18);
+  textSize(20);
+  text("You have set out on your hero's journey.", width / 2, 210);
+  text("The journey leads you to the Dark Forest.", width / 2, 230);
   text(
-    "Click the button (or press ENTER) for a random result.",
+    "Deep in the heart of the forest lays the green dragon...",
     width / 2,
-    210,
+    250,
+  );
+  text("JAXANAEDEGOR", width / 2, 270);
+  text("Your mission, survive the forest and slay the dragon", width / 2, 290);
+  text(
+    "Click the button (or press ENTER) to start your journey.",
+    width / 2,
+    340,
   );
 
   // ---- Draw the button ----
   // We pass the button object to a helper function
-  drawGameButton(gameBtn);
+  drawGame3Button(game3Btn);
 
   // ---- Cursor feedback ----
   // If the mouse is over the button, show a hand cursor
   // Otherwise, show the normal arrow cursor
-  cursor(isHover(gameBtn) ? HAND : ARROW);
+  cursor(isHover(game3Btn) ? HAND : ARROW);
 }
 
 // ------------------------------
@@ -57,7 +66,7 @@ function drawGame() {
 // ------------------------------
 // This function is responsible *only* for drawing the button.
 // It does NOT handle clicks or game logic.
-function drawGameButton({ x, y, w, h, label }) {
+function drawGame3Button({ x, y, w, h, label }) {
   rectMode(CENTER);
 
   // Check if the mouse is hovering over the button
@@ -89,9 +98,9 @@ function drawGameButton({ x, y, w, h, label }) {
 // ------------------------------
 // This function is called from main.js
 // only when currentScreen === "game"
-function gameMousePressed() {
+function game3MousePressed() {
   // Only trigger the outcome if the button is clicked
-  if (isHover(gameBtn)) {
+  if (isHover(game3Btn)) {
     triggerRandomOutcome();
   }
 }
@@ -100,7 +109,7 @@ function gameMousePressed() {
 // Keyboard input for this screen
 // ------------------------------
 // Allows keyboard-only interaction (accessibility + design)
-function gameKeyPressed() {
+function game3KeyPressed() {
   // ENTER key triggers the same behaviour as clicking the button
   if (keyCode === ENTER) {
     triggerRandomOutcome();
