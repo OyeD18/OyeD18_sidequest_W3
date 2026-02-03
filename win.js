@@ -23,14 +23,14 @@ function drawWin() {
   // Main success message
   textSize(40);
   text("Congratulations!.", width / 2, 300);
-  text("You journey is over.", width / 2, 325);
-  text("You have slain JAXANAEDEGOR.", width / 2, 350);
-  text("You return home victorious....", width / 2, 375);
-  text("A true Hero", width / 2, 390);
+  text("You journey is over.", width / 2, 340);
+  text("You have slain JAXANAEDEGOR.", width / 2, 380);
+  text("You return home victorious....", width / 2, 420);
+  text("A true Hero", width / 2, 460);
 
   // Instruction text
   textSize(20);
-  text("Click or press R to return to Start.", width / 2, 435);
+  text("Click or press R to return to Start.", width / 2, 520);
 }
 
 // ------------------------------------------------------------
